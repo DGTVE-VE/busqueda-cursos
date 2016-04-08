@@ -32,7 +32,8 @@ class BusquedaController extends Controller {
     
     public function buscarTodos(){
         
-        $cursosTodos = DB::table("course_name where course_id is not null and trim(course_id)!=''")->get();
+        //$cursosTodos = DB::table("course_name where course_id is not null and trim(course_id)!=''")->get();
+        $cursosTodos = DB::select("select *from course_name where course_id is not null and trim(course_id)!=''");
         
         $cursosPorCategoria = DB::select("select c.id, c.categoria, count(*)"
                 . " as cursos"
