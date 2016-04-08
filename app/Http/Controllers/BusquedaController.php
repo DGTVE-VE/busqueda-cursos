@@ -14,13 +14,16 @@ class BusquedaController extends Controller {
         
         $termino = filter_input(INPUT_POST, 'termino');
         $cursos = Course_name::whereRaw("match(course_name,descripcion)"
-                . "against('$termino')")->get();
+                . "against('$termino') "
+                . "and course_id is not null and trim(course_id)!=''" )->get();
         
         $cursosPorCategoria = DB::select("select c.id, c.categoria, count(*)"
                 . " as cursos"
                 . " from categorias c, curso_categoria r"
                 . " where c.id = r.id_categoria"
-                . " group by c.id, c.categoria");
+                . " group by c.id, c.categoria"
+                . " and course_id is not null and trim(course_id)!=''");
+        
         
         
         return view ('busqueda_cursos',['cursos'=>$cursos,'cursosPorCategoria'=>$cursosPorCategoria]);                
@@ -29,13 +32,14 @@ class BusquedaController extends Controller {
     
     public function buscarTodos(){
         
-        $cursosTodos = DB::table('course_name')->get();
+        $cursosTodos = DB::table("course_name where course_id is not null and trim(course_id)!=''")->get();
         
         $cursosPorCategoria = DB::select("select c.id, c.categoria, count(*)"
                 . " as cursos"
                 . " from categorias c, curso_categoria r"
                 . " where c.id = r.id_categoria"
-                . " group by c.id, c.categoria");     
+                . " group by c.id, c.categoria"
+                . " and course_id is not null and trim(course_id)!=''");     
         
 //var_dump($cursosTodos);
         return view('busqueda_cursos',['cursosTodos'=>$cursosTodos,'cursosPorCategoria'=>$cursosPorCategoria]);
@@ -48,11 +52,13 @@ class BusquedaController extends Controller {
                 . " as cursos"
                 . " from categorias c, curso_categoria r"
                 . " where c.id = r.id_categoria"
-                . " group by c.id, c.categoria");        
+                . " group by c.id, c.categoria"
+                . " and course_id is not null and trim(course_id)!=''");        
         
         $cursosCategoria = DB::select("select *from course_name a, curso_categoria b "
                 . " where a.id = b.id_curso "
-                . " and b.id_categoria ='$categoria_id'");
+                . " and b.id_categoria ='$categoria_id'"
+                . " and course_id is not null and trim(course_id)!=''");
 //var_dump($cursosPorCategoria);
         return view('busqueda_cursos',['cursosCategoria'=>$cursosCategoria,
             'cursosPorCategoria'=>$cursosPorCategoria]);
