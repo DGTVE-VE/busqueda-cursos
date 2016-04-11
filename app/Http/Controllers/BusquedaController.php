@@ -19,8 +19,9 @@ class BusquedaController extends Controller {
         
         $cursosPorCategoria = DB::select("select c.id, c.categoria, count(*)"
                 . " as cursos"
-                . " from categorias c, curso_categoria r"
+                . " from categorias c, curso_categoria r, course_name n"
                 . " where c.id = r.id_categoria"
+                . " and r.id_curso = n.id and n.course_id is not null and trim(n.course_id)!=''"
                 . " group by c.id, c.categoria");
         
         
@@ -36,8 +37,9 @@ class BusquedaController extends Controller {
         
         $cursosPorCategoria = DB::select("select c.id, c.categoria, count(*)"
                 . " as cursos"
-                . " from categorias c, curso_categoria r"
-                . " where c.id = r.id_categoria"                
+                . " from categorias c, curso_categoria r, course_name n"
+                . " where c.id = r.id_categoria"
+                . " and r.id_curso = n.id and n.course_id is not null and trim(n.course_id)!=''"
                 . " group by c.id, c.categoria");     
         
 //var_dump($cursosTodos);
@@ -49,9 +51,10 @@ class BusquedaController extends Controller {
         
         $cursosPorCategoria = DB::select("select c.id, c.categoria, count(*)"
                 . " as cursos"
-                . " from categorias c, curso_categoria r"
+                . " from categorias c, curso_categoria r, course_name n"
                 . " where c.id = r.id_categoria"
-                . " group by c.id, c.categoria");        
+                . " and r.id_curso = n.id and n.course_id is not null and trim(n.course_id)!=''"
+                . " group by c.id, c.categoria");       
         
         $cursosCategoria = DB::select("select *from course_name a, curso_categoria b "
                 . " where a.id = b.id_curso "
