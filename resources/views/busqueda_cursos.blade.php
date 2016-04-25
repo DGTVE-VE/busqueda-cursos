@@ -3,6 +3,8 @@
 <html>
     <head>
         <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="{{ asset('js/efectos.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/principal.css') }}">
         <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
@@ -46,40 +48,44 @@
                 <div class="col-md-10">    
                     @if(!empty($cursos))
                     <div class="row">
-                        
+
                         @foreach($cursos as $curso)
-                        <div class="col-md-4 div-cursos">
-                            <a href="http://mx.televisioneducativa.gob.mx/courses/{{ $curso->course_id }}/about"><div class="thumbnail thumbnail-size">
-                                    <div>
-                                    <img class="thumbnail-image"src="{{ $curso->thumbnail }}" alt="...">
+                        <div class="col-md-4 div-cursos div-curso">
+                            <a style="text-decoration: none" href="http://mx.televisioneducativa.gob.mx/courses/{{ $curso->course_id }}/about">
+                                <div class="thumbnail thumbnail-size border-thumbnail">
+
+                                    <div class="opacity">                                
+                                        <img class="thumbnail-image img-tin"src="{{ $curso->thumbnail }}" alt="...">
+                                        <div class="textover1"><h2>Aprender más</h2></div>
                                     </div>
                                     <div class="caption">
-                                        
-                                            <div class="course-organization">{{ $curso->institucion }}</div>
-                                            <div class="course-code">{{ $curso->course_id }}</div>
-                                            <div class="course-title">{{ $curso->course_name }}</div>
-                                       
-                                        <div class="course-date">Empieza: {{ $curso->inicio }}</div>
+
+                                        <div class="row"><div class="course-organization">{{ $curso->institucion }}</div></div>
+                                        <div class="row"><div class="course-code">{{ $curso->course_id }}</div></div>
+                                        <div class="row"><div class="course-title">{{ $curso->course_name }}</div></div>
+                                        <div class="row"><div class="course-date">Empieza: {{ $curso->inicio }}</div></div>
                                     </div>
-                                </div></a>
+                                </div>
+                            </a>
                         </div>   
                         @endforeach
                     </div>
                     @elseif(!empty($cursosCategoria))
                     <div class="row">
                         @foreach($cursosCategoria as $cursoCategoria)
-                        <div class="col-md-4 div-cursos">
-                            <a href="http://mx.televisioneducativa.gob.mx/courses/{{ $cursoCategoria->course_id }}/about"><div class="thumbnail thumbnail-size">
-                                    <div>
-                                    <img class="thumbnail-image"src="{{ $cursoCategoria->thumbnail }}" alt="...">
+                        <div class="col-md-4 div-cursos div-curso">
+                            <a style="text-decoration: none" href="http://mx.televisioneducativa.gob.mx/courses/{{ $cursoCategoria->course_id }}/about">
+                                <div class="thumbnail thumbnail-size border-thumbnail">
+                                    <div class="opacity">
+                                        <img class="thumbnail-image img-tin"src="{{ $cursoCategoria->thumbnail }}" alt="...">
+                                        <div class="textover1"><h2>Aprender más</h2></div>
                                     </div>
                                     <div class="caption">
-                                        
-                                            <div class="course-organization">{{ $cursoCategoria->institucion }}</div>
-                                            <div class="course-code">{{ $cursoCategoria->course_id }}</div>
-                                            <div class="course-title">{{ $cursoCategoria->course_name }}</div>
-                                       
-                                        <div class="course-date">Empieza: {{ $cursoCategoria->inicio }}</div>
+
+                                        <div class="row"><div class="course-organization">{{ $cursoCategoria->institucion }}</div></div>
+                                        <div class="row"><div class="course-code">{{ $cursoCategoria->course_id }}</div></div>
+                                        <div class="row"><div class="course-title">{{ $cursoCategoria->course_name }}</div></div>
+                                        <div class="row"><div class="course-date">Empieza: {{ $cursoCategoria->inicio }}</div></div>
                                     </div>
                                 </div></a>
                         </div>   
@@ -88,16 +94,18 @@
                     @else                    
                     <div class="row">
                         @foreach($cursosTodos as $cursoTodo)
-                        <div class="col-md-4 div-cursos">
-                            <a href="http://mx.televisioneducativa.gob.mx/courses/{{ $cursoTodo->course_id }}/about"><div class="thumbnail thumbnail-size">
-                                    <div>
-                                        <img class="thumbnail-image"src="{{ $cursoTodo->thumbnail }}" alt="...">    
+                        <div class="col-md-4 div-cursos div-curso">
+                            <a style="text-decoration: none"href="http://mx.televisioneducativa.gob.mx/courses/{{ $cursoTodo->course_id }}/about">
+                                <div class="thumbnail thumbnail-size border-thumbnail">
+                                    <div class="opacity">
+                                        <img class="thumbnail-image img-tin"src="{{ $cursoTodo->thumbnail }}" alt="...">
+                                        <div class="textover1"><h2>Aprender más</h2></div>
                                     </div>
                                     <div class="caption">
-                                        <div class="course-organization">{{ $cursoTodo->institucion }}</div>
-                                        <div class="course-code">{{ $cursoTodo->course_id }}</div>
-                                        <div class="course-title">{{ $cursoTodo->course_name }}</div>
-                                        <div class="course-date">Empieza: {{ $cursoTodo->inicio }}</div>
+                                        <div class="row"><div class="course-organization">{{ $cursoTodo->institucion }}</div></div>
+                                        <div class="row"><div class="course-code">{{ $cursoTodo->course_id }}</div></div>
+                                        <div class="row"><div class="course-title">{{ $cursoTodo->course_name }}</div></div>
+                                        <div class="row"><div class="course-date">Empieza: {{ $cursoTodo->inicio }}</div></div>
                                     </div>
                                 </div></a>
                         </div>

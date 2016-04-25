@@ -19,6 +19,7 @@ Route::get('/', function () {
 //   return view ('busqueda_cursos'); 
 //});
 
+Route::get ('/','HomeController@index');
 Route::get ('/busqueda','BusquedaController@buscarTodos');
 Route::get ('/categoria/{categoria}','BusquedaController@muestraCategoria');
 Route::post ('busca', 'BusquedaController@buscar');
